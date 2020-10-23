@@ -1,26 +1,16 @@
 import React, { useState, useRef } from "react";
-import {
-  List,
-  Avatar,
-  Button,
-  Typography,
-  Form,
-  Input,
-  Select,
-  DatePicker,
-  Menu,
-  Dropdown,
-  Tabs,
-} from "antd";
+import { Button, Typography, Form, Menu, Tabs } from "antd";
 import { DownOutlined } from "@ant-design/icons";
-
-import "./App.css";
-import logo from "./logo.svg";
 
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
 
 import { todoListData } from "./utils/data";
+
+import { MenuKey } from "./TodoList";
+
+import "./App.css";
+import logo from "./logo.svg";
 
 const menu = (
   <Menu>
@@ -48,7 +38,7 @@ function App() {
   const activeTodoList = todoList.filter((todo) => !todo.isCompleted);
   const completedTodoList = todoList.filter((todo) => todo.isCompleted);
 
-  const onClick = (todoId: string, key: "complete" | "delete") => {
+  const onClick = (todoId: string, key: MenuKey) => {
     if (key === "complete") {
       const newTodoList = todoList.map((todo) => {
         if (todo.id === todoId) {
